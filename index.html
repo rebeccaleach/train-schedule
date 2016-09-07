@@ -9,12 +9,16 @@
 
 		<title>Train Schedule</title>
 
-    <link rel="stylesheet" href="assets/css/reset.css">
+<!--     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
     <link href="https://fonts.googleapis.com/css?family=Raleway|Righteous" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
     <script src="assets/js/script.js"></script>
 
 	</head>
@@ -22,22 +26,73 @@
 
 	<body>
 
-  <div class="container">
+    <div class="container">
 
-    <header>
+      <div class="row"> <!-- first row -->
 
-      <h1>Train Schedule</h1>
-      <p>Find your train</p>
+        <header class="col-xs-12 jumbotron">
 
-    </header>
+          <h1>Train Schedule</h1>
+          <p>Find your train</p>
 
-    <main>
+        </header>
 
+      </div> <!-- end first row -->
 
+      <main class="jumbotron">
 
-    </main>
+        <div class="row"> <!-- second row -->
 
-    </div>
+          <div class="col-xs-12">
+
+            <h5 class="bg-primary p-a-1">Current Train Schedule</h5>
+
+            <table class="table">
+              <tr>
+                <td>TK</td><td>TK</td><td>TK</td>
+              </tr>
+              <tr>
+                <td>TK</td><td>TK</td><td>TK</td>
+              </tr>
+            </table>
+
+          </div>
+
+        </div> <!-- end second row -->
+
+        <div class="row"> <!-- third row -->
+
+          <div class="col-xs-12">
+
+            <h5 class="bg-primary p-a-1">Add Train</h5>
+
+            <form>
+              <div class="form-group">
+                <label for="trainName">Train Name</label>
+                <input type="text" class="form-control" id="trainName">
+              </div>
+              <div class="form-group">
+                <label for="destination">Destination</label>
+                <input type="text" class="form-control" id="destination">
+              </div>
+              <div class="form-group">
+                <label for="firstTrainTime">First Train Time (HH:mm - Military Time)</label>
+                <input type="text" class="form-control" id="firstTrainTime">
+              </div>
+              <div class="form-group">
+                <label for="frequency">Frequency</label>
+                <input type="text" class="form-control" id="frequency">
+              </div>
+              <button type="submit" class="btn btn-default" id="button">Submit</button>
+            </form>
+
+          </div>
+
+        </div> <!-- end third row -->
+
+      </main>
+
+    </div> <!-- closing .container -->
 
 	</body>
 
