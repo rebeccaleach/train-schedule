@@ -38,24 +38,29 @@ $(document).ready(function(){
 			firstTrainTime = $('#firstTrainTime').val().trim();
 			frequency = $('#frequency').val().trim();
 
-			console.log (trainName);
-			console.log(destination);
-			console.log(firstTrainTime);
-			console.log(frequency);
+			var newTrain = {
+				name: trainName,
+				dest: destination,
+				time: firstTrainTime,
+				freq: frequency
+			};
 
-			database.ref().set({
-				trainName: trainName,
-				destination: destination,
-				firstTrainTime: firstTrainTime,
-				frequency: frequency
-			})
+			console.log(newTrain.name);
+			console.log(newTrain.dest);
+			console.log(newTrain.time);
+			console.log(newTrain.freq);
+
+			firebase.database().ref().push(newTrain);
+
 		}) // end of click handler
 
 
 		// when a value in the database is changed, this function updates it? stores the object item in firebase?
 
-		database.ref().on('value', function(snapshot) {
+		firebase.database().ref().on('value', function(snapshot) {
 			console.log(snapshot.val());
+
+
 
 		})
 
