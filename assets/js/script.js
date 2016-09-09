@@ -24,6 +24,16 @@ $(document).ready(function(){
 	var firstTrainTime;
 	var frequency;
 
+	var now;
+	var timeElapsed;
+	var unitsElapsed;
+	var unitsTillArrival;
+	var minutesTillArrival;
+	var arrivalTime;
+	var minutesAway;
+
+
+
 
 
 	// take the user input (adding a train) and store it in Firebase and display the information on the page
@@ -47,10 +57,10 @@ $(document).ready(function(){
 
 			// looks like the textboxes are clearing themselves, so do i still need to clear them manually?
 
-			console.log(newTrain.name);
-			console.log(newTrain.dest);
-			console.log(newTrain.time);
-			console.log(newTrain.freq);
+			// console.log(newTrain.name);
+			// console.log(newTrain.dest);
+			// console.log(newTrain.time);
+			// console.log(newTrain.freq);
 
 			firebase.database().ref().push(newTrain);
 
@@ -62,7 +72,7 @@ $(document).ready(function(){
 		// this function also populates the table on the HTML page
 
 		firebase.database().ref().on('child_added', function(snapshot) {
-			console.log(snapshot.val());
+			// console.log(snapshot.val());
 
 			// updating the original variables again
 			// i don't really understand what this is doing
@@ -71,22 +81,20 @@ $(document).ready(function(){
 			firstTrainTime = snapshot.val().time;
 			frequency = snapshot.val().freq;
 
-			console.log(trainName);
-			console.log(destination);
-			console.log(firstTrainTime);
-			console.log(frequency);
+			// console.log(trainName);
+			// console.log(destination);
+			// console.log(firstTrainTime);
+			// console.log(frequency);
 
 			// variables that require Moment crap
-			var nextArrival = "??";
-			var minutesAway = "!!";
 
-			console.log(nextArrival);
-			console.log(minutesAway);
+
+
 
 
 		// 2. take each object(?), i.e. each new train, from Firebase and display it on the page in a table
 
-			$('#trainTable > tbody').append('<tr><td>' + trainName + '</td><td>' + destination + '</td><td>' + frequency + '</td><td>' + nextArrival + '</td><td>' + minutesAway + '</td></tr>');
+			$('#trainTable > tbody').append('<tr><td>' + trainName + '</td><td>' + destination + '</td><td>' + frequency + '</td><td>' + arrivalTime + '</td><td>' + minutesAway + '</td></tr>');
 
 
 
