@@ -45,6 +45,8 @@ $(document).ready(function(){
 				freq: frequency
 			};
 
+			// looks like the textboxes are clearing themselves, so do i still need to clear them manually?
+
 			console.log(newTrain.name);
 			console.log(newTrain.dest);
 			console.log(newTrain.time);
@@ -55,16 +57,42 @@ $(document).ready(function(){
 		}) // end of click handler
 
 
-		// when a value in the database is changed, this function updates it? stores the object item in firebase?
+		// when a value in the database is changed, this function updates it? stores the object item in firebase? why do i need this if the data is already stored in the firebase? it's already there. i can see it
 
-		firebase.database().ref().on('value', function(snapshot) {
+		// this function also populates the table on the HTML page
+
+		firebase.database().ref().on('child_added', function(snapshot) {
 			console.log(snapshot.val());
 
+			// updating the original variables again
+			// i don't really understand what this is doing
+			trainName = snapshot.val().name;
+			destination = snapshot.val().dest;
+			firstTrainTime = snapshot.val().time;
+			frequency = snapshot.val().freq;
 
+			console.log(trainName);
+			console.log(destination);
+			console.log(firstTrainTime);
+			console.log(frequency);
 
-		})
+			// variables that require Moment crap
+			var nextArrival = "??";
+			var minutesAway = "!!";
+
+			console.log(nextArrival);
+			console.log(minutesAway);
+
 
 		// 2. take each object(?), i.e. each new train, from Firebase and display it on the page in a table
+
+			$('#trainTable > tbody').append('<tr><td>' + trainName + '</td><td>' + destination + '</td><td>' + frequency + '</td><td>' + nextArrival + '</td><td>' + minutesAway + '</td></tr>');
+
+
+
+		});
+
+		
 
 
 

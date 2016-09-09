@@ -19,3 +19,8 @@ p img {
 form {
 	margin: 40px auto;
 }
+
+.topRow {
+	background-color: gray;
+	color: white;
+}
