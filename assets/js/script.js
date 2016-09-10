@@ -32,6 +32,8 @@ $(document).ready(function(){
 	var arrivalTime;
 	var minutesAway;
 
+	var remainder;
+
 
 
 
@@ -86,15 +88,41 @@ $(document).ready(function(){
 			// console.log(firstTrainTime);
 			// console.log(frequency);
 
-			// variables that require Moment crap
 
+
+
+			// moment crap
+
+			// MOMENT PSEUDOCODE
+			// timeElapsed = now - firstTrainTime (convert to minutes);
+			// unitsElapsed = parseInt(timeElapsed/frequency);
+			// unitsTillArrival = unitsElapsed + 1;
+			// minutesTillArrival = unitsTillArrival * frequency;
+			// arrivalTime = firstTrainTime + minutesTillArrival;
+
+		var firstTrainTimeConverted = moment(firstTrainTime, 'hh:mm').subtract(1, 'years');
+
+		now = moment();
+		console.log(now);
+
+		timeElapsed = moment().diff(moment(firstTrainTimeConverted), 'minutes');
+		console.log(timeElapsed);
+
+		remainder = timeElapsed % frequency;
+		console.log('Remainder: ' + remainder);
+
+		minutesTillArrival = frequency - remainder;
+		console.log('Minutes till arrival: ' + minutesTillArrival);
+
+		arrivalTime = moment().add(minutesTillArrival, 'minutes');
+		console.log('Arrival time: ' + moment(arrivalTime).format('hh:mm'));
 
 
 
 
 		// 2. take each object(?), i.e. each new train, from Firebase and display it on the page in a table
 
-			$('#trainTable > tbody').append('<tr><td>' + trainName + '</td><td>' + destination + '</td><td>' + frequency + '</td><td>' + arrivalTime + '</td><td>' + minutesAway + '</td></tr>');
+			$('#trainTable > tbody').append('<tr><td>' + trainName + '</td><td>' + destination + '</td><td>' + frequency + '</td><td>' + moment(arrivalTime).format('hh:mm') + '</td><td>' + minutesTillArrival + '</td></tr>');
 
 
 
